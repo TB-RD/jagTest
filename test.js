@@ -19,12 +19,12 @@ module.exports = async (message) => {
             .setTimestamp()
             .setFooter('im just testing');
 
-const row = new MessageActionRow().addComponents(
-    new MessageButton()
-    .setCustomId("random")
-    .setLabel("primary")
-    .setStyle("PRIMARY")
-);
+        const row = new MessageActionRow().addComponents(
+            new MessageButton()
+            .setCustomId("random")
+            .setLabel("primary")
+            .setStyle("PRIMARY")
+        );
 
         message.channel.send({embeds: [exampleEmbed], components : [row]});
     
