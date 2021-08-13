@@ -1,12 +1,10 @@
 /* === basic stuff === */
-const fs = require('fs');
-const Discord = require('discord.js');
+const {Message,MessageActionRow,MessageButton,Discord,MessageEmbed} = require('discord.js');
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const prefix = ',';
-
-client.commands = new Discord.Collection();
-
+const {stripIndents} = require('common-tags');
+//client.commands = new Discord.Collection();
 require("dotenv").config();
 client.login(process.env.JAGUAR_TEST_TOKEN);
 
@@ -16,27 +14,6 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 };*/
-
-
-/*
-client.on('message', message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    if (command === 'info') {   
-		client.commands.get('info').execute(message, args);
-	} case (command == 'idk') {
-
-    }
-
-});
-
-*/
-/* === basic commands === */
-/* === commands === */
-/* === replies === */
-
-
 
 function jagReplies(message) {
 
@@ -107,10 +84,8 @@ let arg = message.content.substring(prefix.length).split(" ");
         }
     }
 
-
-
-
 client.on('messageCreate', jagReplies);
+
 /* === avatar accessor === */
 
 client.on('messageCreate', jagAvatar);
@@ -122,9 +97,49 @@ function jagAvatar(msg) {
     }
 }
 
-/* === Role giver === */
-
-
 const test = require("./test");
 client.on('messageCreate', test);
+
+
+let list1 = stripIndents `
+aaaa
+one
+`;
+let list2 = stripIndents `
+aaaa
+two
+`;
+
+let pages = [list1, list2];
+let page = 1;
+
+const embed = new MessageEmbed();
+        embed.setTitle('just test');
+        embed.setDescription(pages[page - 1]);
+        embed.setColor(0x21c400);
+        embed.setFooter('this bot is provided by jaguar');
+        embed.setTimestamp();
+
+
+client.on('interactionCreate', async (interaction) => {
+if(interaction.customId === 'first'){
+    
+let message = await interaction.channel.send({ embeds: [embed]})
+if (pages.length === 1) return;
+await message.react('🔴');
+const filter = (reaction, user) => {
+	return reaction.emoji.name === '🔴' && user.id === message.author.id;
+};
+const next = message.createReactionCollector({filter, time: 999999});
+next.on('collect', r => {
+    r.users.remove(message.author.id);
+    if(page === pages.length) return;
+    page++;
+    embed.setDescription(pages[page -1]);
+    message.edit({ embeds: [embed]})
+    console.log('works')})
+    } else if (interaction.customId === 'second'){
+        interaction.reply({content: `it works son`})
+    }
+})
 
