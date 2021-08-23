@@ -1,13 +1,14 @@
 /* === basic stuff === */
 const {Message,MessageActionRow,MessageButton,Discord,MessageEmbed} = require('discord.js');
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: 
+[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 const prefix = ',';
 const {stripIndents} = require('common-tags');
 //client.commands = new Discord.Collection();
 require("dotenv").config();
 client.login(process.env.JAGUAR_TEST_TOKEN);
-
+const connect = require("./connect");
 //onst commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 /*
 for (const file of commandFiles) {
@@ -131,12 +132,9 @@ const filter = (reaction, user) => {
 	return reaction.emoji.name === '🔴' && user.id === message.author.id;
 };
 const next = message.createReactionCollector({filter, time: 999999});
-next.on('collect', r => {
-    r.users.remove(message.author.id);
-    if(page === pages.length) return;
-    page++;
-    embed.setDescription(pages[page -1]);
-    message.edit({ embeds: [embed]})
+
+next.on('collect', () => {
+
     console.log('works')})
     } else if (interaction.customId === 'second'){
         interaction.reply({content: `it works son`})
