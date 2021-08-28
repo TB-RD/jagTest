@@ -13,7 +13,7 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "test": "mocha --exit --recursive --timeout 5000",
+    "test": "mocha  --timeout 5000",
     "dev": "nodemon ."
   },
   "author": "",

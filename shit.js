@@ -1,4 +1,3 @@
-
 /*
 class questions {
                 constructor(ques) {
@@ -63,3 +62,56 @@ class questions {
                 })
                 collector.on("end", () => msg.edit("end collector"));
             }) */
+
+//bro its mocha test here
+/*
+            /*const mongoose = require("mongoose");
+require("dotenv").config();
+
+// ES6 Promises
+mongoose.Promise = global.Promise;
+
+// Connect to db before tests run
+before(function (done) {
+  // Connect to mongodb
+  mongoose.connect(
+    process.env.MONGO_ATLAS_URI,
+    { useNewUrlParser: true, 
+      useUnifiedTopology: true }
+  );
+  mongoose.connection.once("open", function () {
+      console.log("I work men do your stuff");
+      done();
+    }).on("error", function (error) {
+      console.log("Connection error:", error);
+    });
+});
+
+// Drop the characters collection before each test
+/*beforeEach(function(done){
+    // Drop the collection
+    mongoose.connection.collections.mariochars.drop(function(){
+        done();
+    });
+});*/
+/*before( async (done) =>{
+  mongoose.connection.close();
+  done();
+});
+*/
+//second file
+/*// Describe our tests
+/*describe("saving records to the database", () => {
+    it("save new record",  async () => {
+      try {
+        const country1 = new Countries({
+        name:"Canada",
+       
+        });
+        await country1.save();
+        assert(country1.isNew === false);
+      } catch(err) {
+        console.log(err)
+      }  
+    })
+  })*/

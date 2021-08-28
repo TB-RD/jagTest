@@ -1,20 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const lunch = require('./demo_test');
+require("dotenv").config();
 
-//ES6 promises
-mongoose.Promise = global.Promise;
+// Connect to db
+mongoose.connect(process.env.MONGO_ATLAS_URI,
+  { useNewUrlParser: true, 
+    useUnifiedTopology: true });
 
-//the hook
-before(function (done) {
-  //connecting with mongoDB
-  mongoose.connect("mongodb://localhost:27027/test", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  mongoose.connection.once("open", () => {
-      console.log("i work men do your stuff :)");
-      done();
-    }).on("error", (err) => {
-      console.log("we have an error", err);
+    mongoose.connection.once("open", function () {
+      console.log("I work men do your stuff");
+    }).on("error", function (error) {
+      console.log("Connection error:", error);
     });
-});

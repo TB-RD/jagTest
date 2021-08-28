@@ -8,7 +8,7 @@ const {stripIndents} = require('common-tags');
 //client.commands = new Discord.Collection();
 require("dotenv").config();
 client.login(process.env.JAGUAR_TEST_TOKEN);
-const connect = require("./connect");
+const connect = require("./test/connect");
 //onst commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 /*
 for (const file of commandFiles) {
@@ -62,6 +62,18 @@ let arg = message.content.substring(prefix.length).split(" ");
 
                     message.reply('girl magnet');
                     break;
+                 case 'dyari': 
+
+                    message.reply('a racist nigger');
+                    break;
+                 case 'jon': 
+
+                    message.reply('duhokî bale');
+                    break;
+                 case 'moha': 
+
+                    message.reply('baklava zaxoyi');
+                    break;
                  case 'chant': 
 
                     message.reply(' Great Kurdistan Commander');
@@ -77,6 +89,14 @@ let arg = message.content.substring(prefix.length).split(" ");
                  case 'ares': 
 
                     message.reply('ares? 3aras? ayris? arez? aras?');
+                    break;
+                 case 'kurdo': 
+
+                    message.reply('paracetamol');
+                    break;
+                 case 'connection': 
+
+                    message.reply('poss knows! :man_shrugging: ');
                     break;
                 
                 }
