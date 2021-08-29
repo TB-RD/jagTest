@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const CountriesSchema = new Schema({
     alpha3: String,
     name: String,
-    _id: Number 
+    //_id: Number 
   });
   
   //connecting the schema with the collection

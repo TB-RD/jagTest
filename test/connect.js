@@ -5,7 +5,8 @@ require("dotenv").config();
 // Connect to db
 mongoose.connect(process.env.MONGO_ATLAS_URI,
   { useNewUrlParser: true, 
-    useUnifiedTopology: true });
+    useUnifiedTopology: true,
+    useFindAndModify: false });
 
     mongoose.connection.once("open", function () {
       console.log("I work men do your stuff");
