@@ -8,7 +8,7 @@ const {stripIndents} = require('common-tags');
 //client.commands = new Discord.Collection();
 require("dotenv").config();
 client.login(process.env.JAGUAR_TEST_TOKEN);
-const connect = require("./test/connect");
+
 //onst commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 /*
 for (const file of commandFiles) {
@@ -156,6 +156,9 @@ const next = message.createReactionCollector({filter, time: 999999});
 next.on('collect', () => {
 
     console.log('works')})
+    embed.setDescription('new des');
+    message.edit(embed);
+
     } else if (interaction.customId === 'second'){
         interaction.reply({content: `it works son`})
     }
